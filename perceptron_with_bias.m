@@ -1,17 +1,14 @@
 
 % number of dimensions
 N = 20;
+
 % max number of epochs
 n_max = 100;
 % number of times we re-generate the data end re-run the perceptron
 nd = 50;
 
-
 % alphas range
 alphas = 0.75:0.25:3;
-
-
-
 
 % array to store the value of alpha and the corresponding number of successes 
 n_of_successes = zeros(2,length(alphas));
@@ -49,20 +46,20 @@ for setting=1:length(alphas)
                     w = w + 1/N*(data(sample, :)*labels(sample));
                 end
             end
-            %X = sprintf('Epoch %d', epoch);
+            X = sprintf('Epoch %d', epoch);
             %disp(X);
             misclassified = sum(sign(sum(w.*data,2))~=labels);
-            %X = sprintf('%d misclassified samples', misclassified);
+            X = sprintf('%d misclassified samples', misclassified);
             %disp(X);
             if misclassified==0
                 break;
             end
         end
         if misclassified==0
-            %X = sprintf('Converged after %d iterations', epoch);  
+            X = sprintf('Converged after %d iterations', epoch);  
             success=success+1;
-        %else
-            %X = sprintf('Has not converged after %d iterations', epoch);
+        else
+            X = sprintf('Has not converged after %d iterations', epoch);
         end
         %disp(X);
     end
@@ -77,18 +74,13 @@ end
 disp(n_of_successes);
 
 alpha_values = n_of_successes(1, :);
-success_ratio = n_of_successes(2, :)./nd; %divide by the number of runs to obtain a value between 0 and 1
+success_ratio = n_of_successes(2, :)./nd;
 
-% plot the figure
-% can be saved as jpeg through File -> Save as (don't save as .fig)
 figure
 plot(alpha_values, success_ratio)
 xlabel('Alpha')
 ylabel('Success ratio')
-X = sprintf('The dependence between the alpha value and the success ratio for N = %d', N);
-title(X)
-
-
+title('The dependence between the alpha value and the success ratio for N = 20')
 
 
            
