@@ -23,7 +23,7 @@ for setting=1:length(alphas)
     alpha = alphas(setting);
 
     % number of samples
-    P = alpha*N;
+    P = ceil(alpha*N);
 
     %number of times the perceptron converged
     success = 0;
