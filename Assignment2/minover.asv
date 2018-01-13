@@ -98,12 +98,11 @@ for i=1:length(alphas)
     gen_er(i,2) = av_error;     
 end
 
-% print out the error array
 gen_er
 
 figure
-plot(gen_er(:,1), gen_er(:, 2))
 xlabel("Alpha value (alpha=P/N)")
 ylabel("Average generalization error")
-title("Learning curve for the minover algorithm")
+title("Learning curve for the miniver algorithm")
+plot(gen_er(:,1), gen_er(:, 2))
 
