@@ -31,7 +31,7 @@ w2 = rand(1, N);
 
 % make sure that the norm is 1
 w1 = w1/norm(w1);
-ñcdw2 = w2/norm(w2);
+w2 = w2/norm(w2);
 
 
 % create an array to keep track of the results
