@@ -4,7 +4,7 @@ rng(1)
 eta  = 0.05;
 
 % the max number of epochs
-tmax = 500;
+tmax = 200;
 
 % the number of examples we consider for training
 P = 4000;
@@ -92,7 +92,7 @@ for ep=1:tmax
     
     
     
-    % calculate the test (generalization) error
+    % calculate the test (generalization) error at the end of the epoch
     Etest = 0;
     for q=P+1:P+Q
         x = xi(:, q);
