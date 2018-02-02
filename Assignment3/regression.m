@@ -1,3 +1,7 @@
+% used matlab version: 2017b
+
+
+% random seed
 rng(1)
 
 %  the learning rate
@@ -55,14 +59,15 @@ errors = zeros(tmax, 3);
 
 for ep=1:tmax
     
-    % create a random permutation of P training samples
+    % create a random permutation of P training samples (then every training sample will be considered inside one epoch)
     perm = randperm(P);
+    % the error
     E = 0;
     
     % consider 1 sample at once
     for p=1:P
     
-        % select training sample at random
+        % select the training sample 
         ind = perm(p);
         x = xi(:, ind);
         t = tau(ind);
