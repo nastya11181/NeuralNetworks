@@ -1,3 +1,7 @@
+% used matlab version: 2017b
+% the script is ready to run
+
+% change the N value underneath to obtain different results
 
 % number of dimensions
 N = 20;
@@ -17,7 +21,7 @@ alphas = 0.75:0.25:3;
 n_of_successes = zeros(2,length(alphas));
 
 
-
+% iterate over diferent alpha values
 for setting=1:length(alphas)
     
     alpha = alphas(setting);
@@ -28,7 +32,7 @@ for setting=1:length(alphas)
     %number of times the perceptron converged
     success = 0;
 
-
+    % re-generate the data nd times
     for run=1:nd
         % generate the data
         data = randn([P N]);
@@ -49,26 +53,17 @@ for setting=1:length(alphas)
                     w = w + 1/N*(data(sample, :)*labels(sample));
                 end
             end
-            %X = sprintf('Epoch %d', epoch);
-            %disp(X);
             misclassified = sum(sign(sum(w.*data,2))~=labels);
-            %X = sprintf('%d misclassified samples', misclassified);
-            %disp(X);
             if misclassified==0
                 break;
             end
         end
-        if misclassified==0
-            %X = sprintf('Converged after %d iterations', epoch);  
+        if misclassified==0 
             success=success+1;
-        %else
-            %X = sprintf('Has not converged after %d iterations', epoch);
         end
-        %disp(X);
     end
-    %disp(alpha);
-    %disp(success);
-    
+
+    % save the results
     n_of_successes(1, setting) = alpha;
     n_of_successes(2, setting)=success;
     
@@ -80,7 +75,6 @@ alpha_values = n_of_successes(1, :);
 success_ratio = n_of_successes(2, :)./nd; %divide by the number of runs to obtain a value between 0 and 1
 
 % plot the figure
-% can be saved as jpeg through File -> Save as (don't save as .fig)
 figure
 plot(alpha_values, success_ratio)
 xlabel('Alpha')
