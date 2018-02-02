@@ -53,11 +53,14 @@ for setting=1:length(alphas)
                     w = w + 1/N*(data(sample, :)*labels(sample));
                 end
             end
+            % calculate the number of miscalssified samples at the end of each epoch
             misclassified = sum(sign(sum(w.*data,2))~=labels);
+            % if all the samples have been classified correctly, the algorithm has converged
             if misclassified==0
                 break;
             end
         end
+        % count the number of successful runs
         if misclassified==0 
             success=success+1;
         end
