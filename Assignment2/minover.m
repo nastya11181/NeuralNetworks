@@ -1,3 +1,8 @@
+% used matlab version: 2017b
+% the script is ready to run
+
+
+
 % number of dimensions
 N = 20;
 % max number of epochs
@@ -23,7 +28,7 @@ for i=1:length(alphas)
     % calculate the average error for the given setting
     av_error = 0;
     
-    % re-generate the data nd time
+    % re-generate the data nd times
     for j=1:nd
 
         % the minover algorithm starts here
@@ -45,9 +50,8 @@ for i=1:length(alphas)
         % variable for checking the convergence
         change = 0;
 
-        % the lowest stability achieved
-        % the first one is guaranteed to be higher than all the subsequent
-        % ones
+        % strore the lowest stability achieved
+        % we start with the value that is guaranteed to be higher than all the subsequent ones
         lowest = 100;
         
         % iterate until the algorithm converges
@@ -85,7 +89,7 @@ for i=1:length(alphas)
                 end
             end
         end
-
+        % calculate the generalization error
         error = 1/pi * acos((w*w_t')/(norm(w)*norm(w_t)));
         
         % add the error in this iteration to the average error
@@ -101,6 +105,8 @@ end
 % print out the error array
 gen_er
 
+
+% plot the generalization error
 figure
 plot(gen_er(:,1), gen_er(:, 2))
 xlabel("Alpha value (alpha=P/N)")
